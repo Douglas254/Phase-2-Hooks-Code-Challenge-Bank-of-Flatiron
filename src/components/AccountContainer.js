@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AddTransactionForm from "./AddTransactionForm";
 
 // components
 import TransactionList from "./TransactionList";
@@ -18,9 +19,20 @@ class AccountContainer extends Component {
       });
   }
 
+  // add transactions from the form
+  addTransactionFun = (addTransaction) => {
+    this.setState((prevState) => {
+      return {
+        transactions: [...prevState.transactions, addTransaction],
+      };
+    });
+  };
+
   render() {
     return (
       <div>
+        <AddTransactionForm addTransactionFun={this.addTransactionFun} />
+
         <TransactionList transactions={this.state.transactions} />
       </div>
     );
